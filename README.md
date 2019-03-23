@@ -1,6 +1,6 @@
 # jquery.codeIt
 
-A simple jquery plugin that generates a dynamic expandable data-tree list from a static list.
+A simple jquery plugin that marks up code using css.
 
 ### Prerequisites
 
