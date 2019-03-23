@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jquery.codeIt</title>
+		<link href='http://fonts.googleapis.com/css?family=Tenor+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="index-src/main.css">
+		<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+		<script src="src/jquery.codeIt.min.js"></script>
+		<script src="src/syntax.min.js"></script>
+		<script>
+		$(function () {
+			$('#ex1').codeIt();
+			$('#ex2').codeIt({
+				title:false,
+				lineNumbers:false
+			});
+			$('#ex3').codeIt({
+				tab:'&nbsp;&nbsp;',
+				newline:'<br><br>'
+			});
+			$('#ex4').codeIt({
+			format:'html',
+			syntax:{'html':{
+			'values':{
+			'find':'(&lt;.*?)(&quot;.*?&quot;)(.*?&gt;)',
+			'replace':'$1<span class="htmlValue">$2</span>$3'
+			},
+			'attributes':{
+			'find':'(&lt;.*?)(\\s(.*?))?(&gt;)',
+			'replace':'$1<span class="htmlAttribute">$2</span>$4'
+			},
+			'tags':{
+			'find':'(&lt;.*?&gt;)',
+			'replace':'<span class="htmlTag">$1</span>'
+			}
+			}
+			}
+			});
+		});
+		</script>
+		<style>
+			figure {
+				border: #999999 1px solid;
+			}
+			.codeItTitle {
+				background-color: #999999;
+				color: #FFFFFF;
+				padding: 4px;
+			}
+			.codeItGutter {
+				background-color: #EDEDED;
+				color: #999999;
+				padding: 0 4px;
+			}
+			.htmlTag {
+				color: #0000CC;
+				font-weight: bold;
+			}
+			.htmlAttribute {
+				color: #FF0000;
+				font-weight: normal;
+			}
+			.htmlValue {
+				color: #AA00CC;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<span class="version">jquery.codeIt plugin: Version 1.0</span>
+				<h1>jquery.codeIt</h1>
+				<h2>Author: <a href="https://github.com/gar-cad" rel="author">Gareth Cadwaladr</a></h2>
+			</header>
+			<ol>
+				<li><a href="#basic">Basic use (Using default syntax file)</a></li>
+				<li><a href="#params1">No title bar, no line numbers</a></li>
+				<li><a href="#params2">Tab string, Newline string</a></li>
+				<li><a href="#params3">Custom syntax</a></li>
+			</ol>
+			<section class="example" id="basic">
+				<h1>Basic use (Using default syntax file)</h1>
+				<h2>Example</h2>
+				<section class="display">
+<pre id="ex1" title="html"><code>
+	<nav id="navigationMenu">
+		<li><a href="#menuItem1">Home</a></li>
+		<li><a href="#menuItem2">About</a></li>
+		<li><a href="#menuItem3">More Info</a></li>
+		<li><a href="#menuItem4">Contact</a></li>
+	</nav>
+</code></pre>			
+				</section>
+				<h2>html</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;pre id="ex1" title="html"&gt;&lt;code&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav id="navigationMenu"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem1"&gt;Home&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem2"&gt;About&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem3"&gt;More Info&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem4"&gt;Contact&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/nav&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/code&gt;&lt;/pre&gt;
+					</code>
+				</section>
+				<h2>javascript</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="http://code.jquery.com/jquery-2.0.1.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="src/jquery.codeIt.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="src/syntax.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(function () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#ex1').codeIt();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+					</code>
+				</section>
+				<h2>css</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;figure {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: #999999 1px solid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.codeItTitle {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: #999999;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 4px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.codeItGutter {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: #EDEDED;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #999999;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 0 4px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlTag {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #0000CC;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlAttribute {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #FF0000;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: normal;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlValue {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #AA00CC;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}
+					</code>
+				</section>	
+				<a href="#container" class="topLink">Top of page</a>
+			</section>
+			<section class="example" id="params1">
+				<h1>No title bar, no line numbers</h1>
+				<h2>Example</h2>
+				<section class="display">
+<pre id="ex2" title="html"><code>
+	<nav id="navigationMenu">
+		<li><a href="#menuItem1">Home</a></li>
+		<li><a href="#menuItem2">About</a></li>
+		<li><a href="#menuItem3">More Info</a></li>
+		<li><a href="#menuItem4">Contact</a></li>
+	</nav>
+</code></pre>			
+				</section>
+				<h2>html</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;pre id="ex2" title="html"&gt;&lt;code&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav id="navigationMenu"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem1"&gt;Home&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem2"&gt;About&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem3"&gt;More Info&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem4"&gt;Contact&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/nav&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/code&gt;&lt;/pre&gt;
+					</code>
+				</section>
+				<h2>javascript</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="http://code.jquery.com/jquery-2.0.1.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="src/jquery.codeIt.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="src/syntax.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(function () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#ex2').codeIt({<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title:false,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineNumbers:false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+					</code>
+				</section>
+				<h2>css</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;figure {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: #999999 1px solid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlTag {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #0000CC;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlAttribute {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #FF0000;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: normal;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlValue {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #AA00CC;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}
+					</code>
+				</section>	
+				<a href="#container" class="topLink">Top of page</a>
+			</section>
+<section class="example" id="params2">
+				<h1>Tab string, Newline string</h1>
+				<h2>Example</h2>
+				<section class="display">
+<pre id="ex3" title="html"><code>
+	<nav id="navigationMenu">
+		<li><a href="#menuItem1">Home</a></li>
+		<li><a href="#menuItem2">About</a></li>
+		<li><a href="#menuItem3">More Info</a></li>
+		<li><a href="#menuItem4">Contact</a></li>
+	</nav>
+</code></pre>			
+				</section>
+				<h2>html</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;pre id="ex3" title="html"&gt;&lt;code&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav id="navigationMenu"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem1"&gt;Home&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem2"&gt;About&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem3"&gt;More Info&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem4"&gt;Contact&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/nav&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/code&gt;&lt;/pre&gt;
+					</code>
+				</section>
+				<h2>javascript</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="http://code.jquery.com/jquery-2.0.1.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="src/jquery.codeIt.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="src/syntax.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(function () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#ex3').codeIt({<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tab:'&amp;nbsp;&amp;nbsp;',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;newline:'&lt;br&gt;&lt;br&gt;'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+					</code>
+				</section>
+				<h2>css</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;figure {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: #999999 1px solid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.codeItTitle {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: #999999;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 4px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.codeItGutter {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: #EDEDED;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #999999;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 0 4px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlTag {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #0000CC;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlAttribute {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #FF0000;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: normal;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlValue {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #AA00CC;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}
+					</code>
+				</section>	
+				<a href="#container" class="topLink">Top of page</a>
+			</section>			
+			<section class="example" id="params4">
+				<h1>Custom syntax</h1>
+				<h2>Example</h2>
+				<section class="display">
+<pre id="ex4" title="html"><code>
+	<nav id="navigationMenu">
+		<li><a href="#menuItem1">Home</a></li>
+		<li><a href="#menuItem2">About</a></li>
+		<li><a href="#menuItem3">More Info</a></li>
+		<li><a href="#menuItem4">Contact</a></li>
+	</nav>
+</code></pre>			
+				</section>
+				<h2>html</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;pre id="ex4" title="html"&gt;&lt;code&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav id="navigationMenu"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem1"&gt;Home&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem2"&gt;About&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem3"&gt;More Info&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#menuItem4"&gt;Contact&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/nav&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/code&gt;&lt;/pre&gt;
+					</code>
+				</section>
+				<h2>javascript</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="http://code.jquery.com/jquery-2.0.1.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="src/jquery.codeIt.min.js"&gt;&lt;/script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(function () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#ex4').codeIt({<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;format:'html',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;syntax:{'html':{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'values':{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'find':'(&lt;.*?)(&quot;.*?&quot;)(.*?&gt;)',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'replace':'$1&lt;span class="htmlValue"&gt;$2&lt;/span&gt;$3'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'attributes':{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'find':'(&lt;.*?)(\\s(.*?))?(&gt;)',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'replace':'$1&lt;span class="htmlAttribute"&gt;$2&lt;/span&gt;$4'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tags':{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'find':'(&lt;.*?&gt;)',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'replace':'&lt;span class="htmlTag"&gt;$1&lt;/span&gt;'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+					</code>
+				</section>
+				<h2>css</h2>
+				<section class="code">
+					<code>
+&nbsp;&nbsp;&nbsp;&nbsp;figure {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: #999999 1px solid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlTag {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #0000CC;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlAttribute {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #FF0000;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: normal;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.htmlValue {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #AA00CC;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}
+					</code>
+				</section>	
+				<a href="#container" class="topLink">Top of page</a>
+			</section>
+			<footer>
+				&copy; 2013 Gareth Cadwaladr
+			</footer>
+		</div>
+	</body>
+</html>
